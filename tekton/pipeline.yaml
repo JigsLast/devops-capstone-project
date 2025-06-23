@@ -61,3 +61,17 @@ spec:
               pip install --no-cache-dir flake8
               echo "Running flake8 with args: $(params.args)"
               flake8 . $(params.args)
+
+    - name: tests
+      workspaces:
+        - name: source
+          workspace: pipeline-workspace
+      taskRef:
+        name: nose
+      params:
+        - name: database_uri
+          value: "sqlite:///test.db"
+        - name: args
+          value: "-v --with-spec --spec-color"
+      runAfter:
+        - clone
