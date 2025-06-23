@@ -190,4 +190,3 @@ class TestAccountService(TestCase):
         self.assertEqual(
             response.headers["Referrer-Policy"],
             "strict-origin-when-cross-origin")
-            
